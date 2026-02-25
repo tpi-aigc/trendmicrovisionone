@@ -1,22 +1,25 @@
 {
     "appid": "f36c99d8-16ed-4b65-be03-d93511d721dd",
-    "name": "Trend Vision One for Splunk SOAR",
-    "description": "Trend Vision One is a purpose-built threat defense platform that provides added value and new benefits beyond XDR solutions, allowing you to see more and respond faster. Providing deep and broad extended detection and response (XDR) capabilities that collect and automatically correlate data across multiple security layers\u2014email, endpoints, servers, cloud workloads, and networks\u2014Trend Vision One prevents the majority of attacks with automated protection",
+    "name": "TrendAI Vision One™ for Splunk SOAR",
+    "description": "TrendAI Vision One™ is a purpose-built threat defense platform that provides added value and new benefits beyond XDR solutions, allowing you to see more and respond faster. Providing deep and broad extended detection and response (XDR) capabilities that collect and automatically correlate data across multiple security layers\u2014email, endpoints, servers, cloud workloads, and networks\u2014TrendAI Vision One™ prevents the majority of attacks with automated protection",
     "type": "endpoint",
-    "product_vendor": "Trend Micro",
+    "product_vendor": "TrendAI™",
     "logo": "logo_trendmicrovisionone.svg",
     "logo_dark": "logo_trendmicrovisionone_dark.svg",
     "product_name": "VisionOne",
-    "python_version": "3",
+    "python_version": "3.9, 3.13",
     "product_version_regex": ".*",
-    "publisher": "Trend Micro",
+    "publisher": "TrendAI™",
     "contributors": [
         {
             "name": "Shakti Shah"
+        },
+        {
+            "name": "Shawn Qin"
         }
     ],
-    "license": "Copyright (c) Trend Micro, 2022-2025",
-    "app_version": "3.0.0",
+    "license": "Copyright (c) Trend Micro, 2026",
+    "app_version": "3.0.1",
     "utctime_updated": "2025-05-29T13:08:59.222584Z",
     "package_name": "phantom_trendmicrovisionone",
     "main_module": "trendmicrovisionone_connector.py",
@@ -515,7 +518,7 @@
             "action": "add to blocklist",
             "identifier": "add_to_blocklist",
             "description": "Adds an item to the Suspicious Objects list in Vision One",
-            "verbose": "Adds an item from the Trend Vision One Suspicious Objects list.",
+            "verbose": "Adds an item from the TrendAI Vision One™ Suspicious Objects list.",
             "type": "contain",
             "read_only": false,
             "parameters": {
@@ -580,7 +583,7 @@
             "action": "remove from blocklist",
             "identifier": "remove_from_blocklist",
             "description": "Removes an item from the Suspicious Objects list",
-            "verbose": "Removes an item from the Trend Vision One Suspicious Objects list.",
+            "verbose": "Removes an item from the TrendAI Vision One™ Suspicious Objects list.",
             "type": "correct",
             "read_only": false,
             "parameters": {
@@ -650,7 +653,7 @@
             "read_only": false,
             "parameters": {
                 "email_identifiers": {
-                    "description": "Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from Trend Vision One message activity data. (Required)",
+                    "description": "Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from TrendAI Vision One™ message activity data. (Required)",
                     "data_type": "string",
                     "required": true,
                     "order": 0
@@ -715,7 +718,7 @@
             "read_only": false,
             "parameters": {
                 "email_identifiers": {
-                    "description": "Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from Trend Vision One message activity data. (Required)",
+                    "description": "Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from TrendAI Vision One™ message activity data. (Required)",
                     "data_type": "string",
                     "required": true,
                     "order": 0
@@ -1707,7 +1710,7 @@
             "action": "add note",
             "identifier": "add_note",
             "description": "Adds a note to an existing workbench alert",
-            "verbose": "Adds a note to an existing workbench alert in Trend Vision One.",
+            "verbose": "Adds a note to an existing workbench alert in TrendAI Vision One™.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -1789,7 +1792,7 @@
             "action": "update status",
             "identifier": "update_status",
             "description": "Updates the status of an existing workbench alert",
-            "verbose": "Updates the status of an existing workbench alert in Trend Vision One.",
+            "verbose": "Updates the status of an existing workbench alert in TrendAI Vision One™.",
             "type": "correct",
             "read_only": false,
             "parameters": {
@@ -2209,7 +2212,7 @@
             "read_only": false,
             "parameters": {
                 "email_identifiers": {
-                    "description": "Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from Trend Vision One message activity data. (Required)",
+                    "description": "Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from TrendAI Vision One™ message activity data. (Required)",
                     "data_type": "string",
                     "required": true,
                     "order": 0
@@ -3046,10 +3049,6 @@
     "pip_dependencies": {
         "wheel": [
             {
-                "module": "chardet",
-                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
-            },
-            {
                 "module": "pytmv1",
                 "input_file": "wheels/py3/pytmv1-0.9.1-py3-none-any.whl"
             }
@@ -3063,11 +3062,11 @@
             },
             {
                 "module": "pydantic",
-                "input_file": "wheels/py3/pydantic-2.5.3-py3-none-any.whl"
+                "input_file": "wheels/py3/pydantic-2.12.5-py3-none-any.whl"
             },
             {
                 "module": "pydantic_core",
-                "input_file": "wheels/py39/pydantic_core-2.14.6-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+                "input_file": "wheels/py39/pydantic_core-2.41.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
             },
             {
                 "module": "pytmv1",
@@ -3075,23 +3074,39 @@
             },
             {
                 "module": "typing_extensions",
-                "input_file": "wheels/py3/typing_extensions-4.13.2-py3-none-any.whl"
+                "input_file": "wheels/py3/typing_extensions-4.15.0-py3-none-any.whl"
+            },
+            {
+                "module": "typing_inspection",
+                "input_file": "wheels/py3/typing_inspection-0.4.2-py3-none-any.whl"
             }
         ]
     },
     "pip313_dependencies": {
         "wheel": [
             {
+                "module": "annotated_types",
+                "input_file": "wheels/py3/annotated_types-0.7.0-py3-none-any.whl"
+            },
+            {
                 "module": "pydantic",
-                "input_file": "wheels/py313/pydantic-1.10.21-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+                "input_file": "wheels/py3/pydantic-2.12.5-py3-none-any.whl"
+            },
+            {
+                "module": "pydantic_core",
+                "input_file": "wheels/py313/pydantic_core-2.41.5-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
             },
             {
                 "module": "pytmv1",
-                "input_file": "wheels/py3/pytmv1-0.6.2-py3-none-any.whl"
+                "input_file": "wheels/py3/pytmv1-0.9.1-py3-none-any.whl"
             },
             {
                 "module": "typing_extensions",
-                "input_file": "wheels/py3/typing_extensions-4.13.2-py3-none-any.whl"
+                "input_file": "wheels/py3/typing_extensions-4.15.0-py3-none-any.whl"
+            },
+            {
+                "module": "typing_inspection",
+                "input_file": "wheels/py3/typing_inspection-0.4.2-py3-none-any.whl"
             }
         ]
     }

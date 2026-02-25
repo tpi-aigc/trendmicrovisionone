@@ -1,20 +1,20 @@
-# Trend Vision One for Splunk SOAR
+# TrendAI Vision One™ for Splunk SOAR
 
-Publisher: Trend Micro \
+Publisher: TrendAI \
 Connector Version: 3.0.0 \
-Product Vendor: Trend Micro \
+Product Vendor: TrendAI™ \
 Product Name: VisionOne \
 Minimum Product Version: 6.3.0
 
-Trend Vision One is a purpose-built threat defense platform that provides added value and new benefits beyond XDR solutions, allowing you to see more and respond faster. Providing deep and broad extended detection and response (XDR) capabilities that collect and automatically correlate data across multiple security layers—email, endpoints, servers, cloud workloads, and networks—Trend Vision One prevents the majority of attacks with automated protection
+TrendAI Vision One™ is a purpose-built threat defense platform that provides added value and new benefits beyond XDR solutions, allowing you to see more and respond faster. Providing deep and broad extended detection and response (XDR) capabilities that collect and automatically correlate data across multiple security layers—email, endpoints, servers, cloud workloads, and networks—TrendAI Vision One™ prevents the majority of attacks with automated protection
 
 ## Playbook Backward Compatibility
 
 - A new action parameter 'inv_result' has been added in the 'update status' actions. Hence, it is requested to the end-user to please update their existing playbooks by re-inserting | modifying | deleting the corresponding action blocks.
 
-# Trend Vision One for Splunk SOAR
+# TrendAI Vision One™ for Splunk SOAR
 
-Trend Vision One is a purpose-built threat defense platform that provides added value and new benefits beyond XDR solutions, allowing you to see more and respond faster. Providing deep and broad extended detection and response (XDR) capabilities that collect and automatically correlate data across multiple security layers—email, endpoints, servers, cloud workloads, and networks—Trend Vision One prevents the majority of attacks with automated protection
+TrendAI Vision One™ is a purpose-built threat defense platform that provides added value and new benefits beyond XDR solutions, allowing you to see more and respond faster. Providing deep and broad extended detection and response (XDR) capabilities that collect and automatically correlate data across multiple security layers—email, endpoints, servers, cloud workloads, and networks—TrendAI Vision One™ prevents the majority of attacks with automated protection
 
 # Splunk> Phantom
 
@@ -26,7 +26,7 @@ Please have a look at our [Contributing Guide](https://github.com/Splunk-SOAR-Ap
 
 This Phantom App is licensed under the Apache 2.0 license. Please see our [Contributing Guide](https://github.com/Splunk-SOAR-Apps/.github/blob/main/.github/CONTRIBUTING.md#legal-notice) for further details.
 
-#### Integration Author: Trend Micro
+#### Integration Author: TrendAI™
 
 Support and maintenance for this integration are provided by the author. Please use the following contact details:
 
@@ -44,25 +44,25 @@ The app uses HTTPS protocol for communicating with the VisionOne API server. Bel
 
 ### Configuration Variables
 
-The below configuration variables are required for this Connector to operate. These variables are specified when configuring a Trend Vision One asset in SOAR.
+The below configuration variables are required for this Connector to operate. These variables are specified when configuring a TrendAI Vision One™ asset in SOAR.
 
 | VARIABLE | REQUIRED | TYPE | DESCRIPTION |
 | --- | --- | --- | --- |
 | **api_url** | required | string | The URL for your ETP instance |
 | **api_key** | required | password | API key |
 
-## Configure Trend Vision One on Splunk SOAR
+## Configure TrendAI Vision One™ on Splunk SOAR
 
 1. Navigate to **Apps** > **Unconfigured Apps** .
-1. Search for Trend Vision One.
+1. Search for TrendAI Vision One™.
 1. Click **CONFIGURE NEW ASSET** to create and configure a new integration instance.
 1. ALternatively click on **INSTALL APP** and drop a tarball of the app
 
 | **Parameter** | **Description** | **Required** |
 | --- | --- | --- |
-| **Asset name** | Unique name for this Trend Vision One instance runner asset | True |
+| **Asset name** | Unique name for this TrendAI Vision One™ instance runner asset | True |
 | **Asset description** | Short description of the asset’s purpose | True |
-| **Product vendor** | Trend Micro | True |
+| **Product vendor** | TrendAI™ | True |
 | **Product name** | Vision One | True |
 | **Tags** | Optional tags to use in Playbooks | False |
 | **API_URL** | Vision One API URL | True |
@@ -912,8 +912,8 @@ Query Op
 | action_result.data.*.os_name | String | Operating system installed on an endpoint |
 | action_result.data.*.os_version | String | Version of the operating system installed on an endpoint |
 | action_result.data.*.os_description | String | Description of the operating system installed on an endpoint |
-| action_result.data.*.product_code | String | 3-character code that identifies Trend Micro products |
-| action_result.data.*.installed_product_codes | String | 3-character code that identifies the installed Trend Micro products on an endpoint |
+| action_result.data.*.product_code | String | 3-character code that identifies TrendAI™ products |
+| action_result.data.*.installed_product_codes | String | 3-character code that identifies the installed TrendAI™ products on an endpoint |
 
 ## Action: Add Note
 
@@ -1404,11 +1404,11 @@ Read only: **True**
 | action_result.data.*.last_modified_date_time | String | The time the object was created |
 | action_result.data.*.description | String | Description of an object |
 
-This version of the Trend Micro app is compatible with Splunk SOAR version **5.1.0** and above.
+This version of the TrendAI™ app is compatible with Splunk SOAR version **5.1.0** and above.
 
 ## Authentication Information
 
-The app uses HTTPS protocol for communicating with the Trend Vision One server. For authentication a Vision One API Token is used by the Splunk SOAR Connector.
+The app uses HTTPS protocol for communicating with the TrendAI Vision One™ server. For authentication a Vision One API Token is used by the Splunk SOAR Connector.
 
 ## Action: Vault Sandbox Analysis
 
@@ -1457,7 +1457,7 @@ ______________________________________________________________________
 
 ### Configuration variables
 
-This table lists the configuration variables required to operate Trend Vision One for Splunk SOAR. These variables are specified when configuring a VisionOne asset in Splunk SOAR.
+This table lists the configuration variables required to operate TrendAI Vision One™ for Splunk SOAR. These variables are specified when configuring a VisionOne asset in Splunk SOAR.
 
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
@@ -1677,7 +1677,7 @@ Adds an item to the Suspicious Objects list in Vision One
 Type: **contain** \
 Read only: **False**
 
-Adds an item from the Trend Vision One Suspicious Objects list.
+Adds an item from the TrendAI Vision One™ Suspicious Objects list.
 
 #### Action Parameters
 
@@ -1705,7 +1705,7 @@ Removes an item from the Suspicious Objects list
 Type: **correct** \
 Read only: **False**
 
-Removes an item from the Trend Vision One Suspicious Objects list.
+Removes an item from the TrendAI Vision One™ Suspicious Objects list.
 
 #### Action Parameters
 
@@ -1739,7 +1739,7 @@ Retrieve data from the quarantine email message and send the result to dashboard
 
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**email_identifiers** | required | Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from Trend Vision One message activity data. (Required) | string | |
+**email_identifiers** | required | Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from TrendAI Vision One™ message activity data. (Required) | string | |
 
 #### Action Output
 
@@ -1767,7 +1767,7 @@ Retrieve data from the delete email message and relay result to Splunk.
 
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**email_identifiers** | required | Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from Trend Vision One message activity data. (Required) | string | |
+**email_identifiers** | required | Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from TrendAI Vision One™ message activity data. (Required) | string | |
 
 #### Action Output
 
@@ -2110,7 +2110,7 @@ Adds a note to an existing workbench alert
 Type: **generic** \
 Read only: **False**
 
-Adds a note to an existing workbench alert in Trend Vision One.
+Adds a note to an existing workbench alert in TrendAI Vision One™.
 
 #### Action Parameters
 
@@ -2140,7 +2140,7 @@ Updates the status of an existing workbench alert
 Type: **correct** \
 Read only: **False**
 
-Updates the status of an existing workbench alert in Trend Vision One.
+Updates the status of an existing workbench alert in TrendAI Vision One™.
 
 #### Action Parameters
 
@@ -2306,7 +2306,7 @@ Quarantine/Restore messages.
 
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**email_identifiers** | required | Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from Trend Vision One message activity data. (Required) | string | |
+**email_identifiers** | required | Email Message ID (<mailMsgId>), Mailbox ID and description or Unique Message ID (msgUuid) and description from TrendAI Vision One™ message activity data. (Required) | string | |
 
 #### Action Output
 
