@@ -1,7 +1,7 @@
 # TrendAI Vision One™ for Splunk SOAR
 
 Publisher: TrendAI \
-Connector Version: 3.0.0 \
+Connector Version: 3.0.1 \
 Product Vendor: TrendAI™ \
 Product Name: VisionOne \
 Minimum Product Version: 6.3.0
