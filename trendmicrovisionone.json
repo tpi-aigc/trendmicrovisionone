@@ -3062,11 +3062,11 @@
             },
             {
                 "module": "pydantic",
-                "input_file": "wheels/py3/pydantic-2.12.5-py3-none-any.whl"
+                "input_file": "wheels/py3/pydantic-2.5.3-py3-none-any.whl"
             },
             {
                 "module": "pydantic_core",
-                "input_file": "wheels/py39/pydantic_core-2.41.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+                "input_file": "wheels/py39/pydantic_core-2.14.6-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
             },
             {
                 "module": "pytmv1",
@@ -3075,10 +3075,6 @@
             {
                 "module": "typing_extensions",
                 "input_file": "wheels/py3/typing_extensions-4.15.0-py3-none-any.whl"
-            },
-            {
-                "module": "typing_inspection",
-                "input_file": "wheels/py3/typing_inspection-0.4.2-py3-none-any.whl"
             }
         ]
     },
