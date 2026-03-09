@@ -1,2 +1,4 @@
 * TrendAI logo/description rebranding.
 * Python version update.
+* Added "get endpoint list" action to retrieve a detailed list of endpoints from Vision One.
+* Added "get endpoint details" action to display the detailed profile of a specified endpoint.
