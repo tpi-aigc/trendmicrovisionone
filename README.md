@@ -1,6 +1,6 @@
 # TrendAI Vision One™ for Splunk SOAR
 
-Publisher: TrendAI \
+Publisher: TrendAI™ \
 Connector Version: 3.0.1 \
 Product Vendor: TrendAI™ \
 Product Name: VisionOne \
@@ -62,7 +62,7 @@ The below configuration variables are required for this Connector to operate. Th
 | --- | --- | --- |
 | **Asset name** | Unique name for this TrendAI Vision One™ instance runner asset | True |
 | **Asset description** | Short description of the asset’s purpose | True |
-| **Product vendor** | TrendAI™ | True |
+| **Product vendor** | TrendAI | True |
 | **Product name** | Vision One | True |
 | **Tags** | Optional tags to use in Playbooks | False |
 | **API_URL** | Vision One API URL | True |
@@ -2585,7 +2585,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
