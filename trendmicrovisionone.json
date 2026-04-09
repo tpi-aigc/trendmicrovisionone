@@ -1,15 +1,15 @@
 {
     "appid": "f36c99d8-16ed-4b65-be03-d93511d721dd",
-    "name": "TrendAI Vision One™ for Splunk SOAR",
+    "name": "TrendAI Vision One for Splunk SOAR",
     "description": "TrendAI Vision One™ is a purpose-built threat defense platform that provides added value and new benefits beyond XDR solutions, allowing you to see more and respond faster. Providing deep and broad extended detection and response (XDR) capabilities that collect and automatically correlate data across multiple security layers\u2014email, endpoints, servers, cloud workloads, and networks\u2014TrendAI Vision One™ prevents the majority of attacks with automated protection",
     "type": "endpoint",
-    "product_vendor": "TrendAI™",
+    "product_vendor": "TrendAI",
     "logo": "logo_trendmicrovisionone.svg",
     "logo_dark": "logo_trendmicrovisionone_dark.svg",
     "product_name": "VisionOne",
     "python_version": "3.9, 3.13",
     "product_version_regex": ".*",
-    "publisher": "TrendAI™",
+    "publisher": "TrendAI",
     "contributors": [
         {
             "name": "Shakti Shah"
