@@ -121,9 +121,7 @@ class TrendMicroVisionOneConnector(BaseConnector):
     @staticmethod
     def _map_severity(severity_value: str) -> str:
         """Map Vision One severity to SOAR severity (high, medium, low)."""
-        return {"critical": "high", "high": "high", "medium": "medium", "low": "low"}.get(
-            severity_value.lower(), "medium"
-        )
+        return {"critical": "high", "high": "high", "medium": "medium", "low": "low"}.get(severity_value.lower(), "medium")
 
     def _get_client(self) -> pytmv1.Client:
         return pytmv1.init(self.app, self.api_key, self._base_url)
@@ -395,13 +393,13 @@ class TrendMicroVisionOneConnector(BaseConnector):
         art_cef = pytmv1.mapper.map_cef(alert)
 
         # Convert enum objects to string values in CEF
-        if 'act' in art_cef and hasattr(art_cef['act'], 'value'):
-            art_cef['act'] = art_cef['act'].value
-        if 'Severity' in art_cef:
-            severity_val = art_cef['Severity'].value if hasattr(art_cef['Severity'], 'value') else art_cef['Severity']
-            art_cef['Severity'] = self._map_severity(severity_val)
-        if 'sourceServiceName' in art_cef and hasattr(art_cef['sourceServiceName'], 'value'):
-            art_cef['sourceServiceName'] = art_cef['sourceServiceName'].value
+        if "act" in art_cef and hasattr(art_cef["act"], "value"):
+            art_cef["act"] = art_cef["act"].value
+        if "Severity" in art_cef:
+            severity_val = art_cef["Severity"].value if hasattr(art_cef["Severity"], "value") else art_cef["Severity"]
+            art_cef["Severity"] = self._map_severity(severity_val)
+        if "sourceServiceName" in art_cef and hasattr(art_cef["sourceServiceName"], "value"):
+            art_cef["sourceServiceName"] = art_cef["sourceServiceName"].value
 
         severity = self._map_severity(alert.severity.value) if alert.severity else "medium"
 

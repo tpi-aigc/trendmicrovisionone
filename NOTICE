@@ -1,12 +1,12 @@
-Splunk SOAR App: TrendAI Vision One™ for Splunk SOAR
+Splunk SOAR App: TrendAI Vision One for Splunk SOAR
 Copyright (c) Trend Micro, 2026
 Third Party Software Attributions:
 
 @@@@============================================================================
 
-Library: pytmv1 - 0.9.1
-Homepage: https://github.com/trendmicro/pytmv1
-License: Apache Software License
+Library: pytmv1 - 0.11.0
+Homepage: https://github.com/TrendATI/pytmv1
+License: Apache-2.0
 License Text:
 
                                  Apache License
