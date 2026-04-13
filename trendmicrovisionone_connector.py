@@ -1,6 +1,6 @@
 # File: trendmicrovisionone_connector.py
 
-# Copyright (c) Trend Micro, 2022-2025
+# Copyright (c) Trend Micro, 2022-2026
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ class TrendMicroVisionOneConnector(BaseConnector):
         self._state: dict[str, Any] = {}
         self.config: dict[str, Any] = {}
 
-        self.app = "Trend Vision One V3"
+        self.app = "TrendAI Vision One V3"
         # Variable to hold a base_url in case the app makes REST calls
         # Do note that the app json defines the asset config, so please
         # modify this as you deem fit.
@@ -117,6 +117,11 @@ class TrendMicroVisionOneConnector(BaseConnector):
         error_result.set_status(phantom.APP_ERROR)
         error_result.add_exception_details(exception)
         self.add_action_result(error_result)
+
+    @staticmethod
+    def _map_severity(severity_value: str) -> str:
+        """Map Vision One severity to SOAR severity (high, medium, low)."""
+        return {"critical": "high", "high": "high", "medium": "medium", "low": "low"}.get(severity_value.lower(), "medium")
 
     def _get_client(self) -> pytmv1.Client:
         return pytmv1.init(self.app, self.api_key, self._base_url)
@@ -387,13 +392,24 @@ class TrendMicroVisionOneConnector(BaseConnector):
         # Use pytmv1 mapper to populate artifact cef
         art_cef = pytmv1.mapper.map_cef(alert)
 
+        # Convert enum objects to string values in CEF
+        if "act" in art_cef and hasattr(art_cef["act"], "value"):
+            art_cef["act"] = art_cef["act"].value
+        if "Severity" in art_cef:
+            severity_val = art_cef["Severity"].value if hasattr(art_cef["Severity"], "value") else art_cef["Severity"]
+            art_cef["Severity"] = self._map_severity(severity_val)
+        if "sourceServiceName" in art_cef and hasattr(art_cef["sourceServiceName"], "value"):
+            art_cef["sourceServiceName"] = art_cef["sourceServiceName"].value
+
+        severity = self._map_severity(alert.severity.value) if alert.severity else "medium"
+
         return {
             "name": alert.id,
             "label": "ALERT",
             "container_id": container_id,
             "source_data_identifier": self.create_artifact_identifier(alert.id),
-            "type": alert.alert_provider,
-            "severity": alert.severity.value,
+            "type": alert.alert_provider.value,
+            "severity": severity,
             "start_time": alert.created_date_time,
             "indicators": [ind.model_dump() for ind in alert.indicators],
             "cef": art_cef,
@@ -493,15 +509,19 @@ class TrendMicroVisionOneConnector(BaseConnector):
         Returns:
             dict[str, Any]: All pertinent data used to create container from Alert.
         """
-        return {
+        severity = self._map_severity(alert.severity.value) if alert.severity else "medium"
+
+        payload = {
             "name": alert.model,
             "source_data_identifier": alert.id,
             "label": self.config.get("ingest", {}).get("container_label"),
             "description": alert.description if isinstance(alert, SaeAlert) else "",
-            "type": alert.alert_provider,
-            "severity": alert.severity,
+            "type": alert.alert_provider.value,
+            "severity": severity,
             "start_time": alert.created_date_time,
         }
+        self.save_progress(f"Creating container: {alert.id} ({alert.model}) - severity: {severity}")
+        return payload
 
     def _create_or_update_container(self, alert: Union[SaeAlert, TiAlert]) -> int:
         """
@@ -1264,7 +1284,7 @@ class TrendMicroVisionOneConnector(BaseConnector):
 
     def _handle_collect_forensic_file(self, param):
         """
-        Collects a file from one or more endpoints and then sends the files to Trend Vision One in a password-protected archive.
+        Collects a file from one or more endpoints and then sends the files to TrendAI Vision One™ in a password-protected archive.
         Note: You can specify either the computer name ("endpointName") or the GUID of the installed agent program ("agentGuid").
         Args:
             collect_files(list[dict[str, str]]): List of dict objects containing endpoint and filepath to file to be analyzed.
@@ -1843,7 +1863,7 @@ class TrendMicroVisionOneConnector(BaseConnector):
             "source_data_identifier": "File Analysis Report - Suspicious Object",
             "label": "trendmicro",
             "tags": "suspiciousObject",
-            "severity": sandbox_suspicious_list_resp[0]["risk_level"].capitalize(),
+            "severity": sandbox_suspicious_list_resp[0]["risk_level"].lower(),
         }
 
         ret_val, msg, cid = self.save_container(container)
