@@ -1,8 +1,8 @@
-# TrendAI Vision One™ for Splunk SOAR
+# TrendAI Vision One for Splunk SOAR
 
-Publisher: TrendAI™ \
-Connector Version: 3.0.1 \
-Product Vendor: TrendAI™ \
+Publisher: TrendAI \
+Connector Version: 3.1.0 \
+Product Vendor: TrendAI \
 Product Name: VisionOne \
 Minimum Product Version: 6.3.0
 
@@ -1459,7 +1459,7 @@ ______________________________________________________________________
 
 ### Configuration variables
 
-This table lists the configuration variables required to operate TrendAI Vision One™ for Splunk SOAR. These variables are specified when configuring a VisionOne asset in Splunk SOAR.
+This table lists the configuration variables required to operate TrendAI Vision One for Splunk SOAR. These variables are specified when configuring a VisionOne asset in Splunk SOAR.
 
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
