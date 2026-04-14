@@ -1508,6 +1508,6 @@ Read only: **True**
 | action_result.data.*.security_policy | String | Security policy applied to the endpoint |
 | action_result.data.*.interfaces | String | Network interfaces of the endpoint |
 | action_result.data.*.epp_agent | String | EPP agent information |
-| action_result.data.*.edr_sensor | String | EDR sensor information |
+| action_result.data.\*.edr_sensor | String | EDR sensor information |
 
 ______________________________________________________________________
