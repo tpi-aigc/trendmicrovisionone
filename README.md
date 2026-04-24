@@ -1500,7 +1500,9 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [sandbox investigation package](#action-sandbox-investigation-package) - Downloads the Investigation Package of the specified object \
 [get suspicious list](#action-get-suspicious-list) - Retrieves information about domains, file SHA-1, file SHA-256, IP addresses, email addresses, or URLs in the Suspicious Object List and displays the information in a paginated list \
 [get exception list](#action-get-exception-list) - Retrieves information about domains, file SHA-1, file SHA-256, IP addresses, sender addresses, or URLs in the Exception List and displays it in a paginated list \
-[vault sandbox analysis](#action-vault-sandbox-analysis) - Send vault item to sandbox for analysis
+[vault sandbox analysis](#action-vault-sandbox-analysis) - Send vault item to sandbox for analysis \
+[get endpoint list](#action-get-endpoint-list) - Retrieves a detailed list of endpoints from Vision One \
+[get endpoint details](#action-get-endpoint-details) - Displays the detailed profile of a specified endpoint
 
 ## action: 'test connectivity'
 
@@ -2578,6 +2580,85 @@ action_result.data.\*.digest | string | | |
 action_result.data.\*.id | string | `task id` | |
 action_result.message | string | | |
 action_result.summary | string | | |
+summary.total_objects | numeric | | |
+summary.total_objects_successful | numeric | | |
+
+## action: 'get endpoint list'
+
+Retrieves a detailed list of endpoints from Vision One
+
+Type: **investigate** \
+Read only: **True**
+
+Retrieves a detailed list of endpoints from Vision One.
+
+#### Action Parameters
+
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**query_op** | optional | Query operator (and/or) | string | |
+**top** | optional | Number of records displayed per page | numeric | |
+**filter** | optional | JSON dictionary of field/value used to filter results (e.g. `{"osPlatform": "windows"}`). For complete list of supported fields check (<https://automation.trendmicro.com/xdr/api-v3#tag/Endpoint-Security/paths/~1v3.0~1endpointSecurity~1endpoints/get>) | string | |
+
+#### Action Output
+
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string | | success failed |
+action_result.parameter.query_op | string | | |
+action_result.parameter.top | numeric | | |
+action_result.parameter.filter | string | | |
+action_result.data.\*.agent_guid | string | | |
+action_result.data.\*.endpoint_name | string | | |
+action_result.data.\*.display_name | string | | |
+action_result.data.\*.os_name | string | | |
+action_result.data.\*.os_platform | string | | |
+action_result.data.\*.os_version | string | | |
+action_result.data.\*.last_used_ip | string | | |
+action_result.data.\*.ip_addresses | string | | |
+action_result.data.\*.isolation_status | string | | |
+action_result.data.\*.security_policy | string | | |
+action_result.data.\*.epp_agent | string | | |
+action_result.data.\*.edr_sensor | string | | |
+action_result.summary | string | | |
+action_result.message | string | | |
+summary.total_objects | numeric | | |
+summary.total_objects_successful | numeric | | |
+
+## action: 'get endpoint details'
+
+Displays the detailed profile of a specified endpoint
+
+Type: **investigate** \
+Read only: **True**
+
+Displays the detailed profile of a specified endpoint.
+
+#### Action Parameters
+
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**endpoint_id** | required | The ID of the endpoint on the Vision One platform. For more details check (<https://automation.trendmicro.com/xdr/api-v3#tag/Endpoint-Security/paths/~1v3.0~1endpointSecurity~1endpoints~1%7BendpointId%7D/get>) | string | |
+
+#### Action Output
+
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string | | success failed |
+action_result.parameter.endpoint_id | string | | |
+action_result.data.\*.agent_guid | string | | |
+action_result.data.\*.endpoint_name | string | | |
+action_result.data.\*.display_name | string | | |
+action_result.data.\*.type | string | | |
+action_result.data.\*.os | string | | |
+action_result.data.\*.last_used_ip | string | | |
+action_result.data.\*.isolation_status | string | | |
+action_result.data.\*.security_policy | string | | |
+action_result.data.\*.interfaces | string | | |
+action_result.data.\*.epp_agent | string | | |
+action_result.data.\*.edr_sensor | string | | |
+action_result.summary | string | | |
+action_result.message | string | | |
 summary.total_objects | numeric | | |
 summary.total_objects_successful | numeric | | |
 

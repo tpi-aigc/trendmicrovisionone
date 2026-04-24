@@ -42,6 +42,7 @@ from pytmv1 import (
     EmailMessageIdRequest,
     EmailMessageUIdRequest,
     EndpointRequest,
+    EndpointSecurityEndpoint,
     ExceptionObject,
     InvestigationResult,
     ObjectRequest,
@@ -88,6 +89,8 @@ class TrendMicroVisionOneConnector(BaseConnector):
             "add_to_exception": self._handle_add_to_exception,
             "test_connectivity": self._handle_test_connectivity,
             "get_endpoint_info": self._handle_get_endpoint_info,
+            "get_endpoint_list": self._handle_get_endpoint_list,
+            "get_endpoint_details": self._handle_get_endpoint_details,
             "quarantine_device": self._handle_quarantine_device,
             "terminate_process": self._handle_terminate_process,
             "add_to_suspicious": self._handle_add_to_suspicious,
@@ -237,6 +240,97 @@ class TrendMicroVisionOneConnector(BaseConnector):
         # Load json objects to list
         for endpoint in new_endpoint_data:
             action_result.add_data(endpoint.model_dump())
+
+        # Return success
+        return action_result.set_status(phantom.APP_SUCCESS)
+
+    def _handle_get_endpoint_list(self, param):
+        """
+        Displays a detailed list of endpoints.
+        Args:
+            query_op(str): query operator ['and', 'or'] (optional, default 'and')
+            top(int): number of records displayed per page (optional, default 100)
+            filter(str): JSON dict of field/value filters (optional, e.g. '{"osPlatform": "windows"}')
+        Returns:
+            list[Any]: Returns a list of endpoint security endpoint objects.
+        """
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
+
+        # Add an action result object to self (BaseConnector) to represent the action for this param
+        action_result = self.add_action_result(ActionResult(param))
+
+        # Optional Params
+        query_op = param.get("query_op", "and")
+        top = int(param.get("top", 100))
+        filter_str = param.get("filter", "{}")
+
+        # Parse filter fields
+        try:
+            fields = json.loads(filter_str)
+        except json.JSONDecodeError:
+            return action_result.set_status(phantom.APP_ERROR, "Invalid JSON provided for 'filter' parameter.")
+
+        # Choose QueryOp Enum based on user choice
+        if query_op.lower() == "or":
+            query_op = pytmv1.QueryOp.OR
+        else:
+            query_op = pytmv1.QueryOp.AND
+
+        # Initialize Pytmv1
+        client = self._get_client()
+
+        endpoints: list[EndpointSecurityEndpoint] = []
+
+        # Make rest call
+        try:
+            client.endpoint.consume_endpoints(
+                lambda ep: endpoints.append(ep),
+                top=top,
+                op=query_op,
+                **fields,
+            )
+        except Exception as e:
+            return action_result.set_status(phantom.APP_ERROR, f"Error while fetching endpoint list: {e}")
+
+        # Add the response into the data section
+        for item in endpoints:
+            action_result.add_data(item.model_dump())
+
+        # Return success
+        return action_result.set_status(phantom.APP_SUCCESS)
+
+    def _handle_get_endpoint_details(self, param):
+        """
+        Displays the detailed profile of a specified endpoint.
+        Args:
+            endpoint_id(str): The ID of the endpoint on the Vision One platform.
+        Returns:
+            dict[str, Any]: Returns detailed endpoint information.
+        """
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
+
+        # Add an action result object to self (BaseConnector) to represent the action for this param
+        action_result = self.add_action_result(ActionResult(param))
+
+        # Required Params
+        endpoint_id = param["endpoint_id"]
+
+        # Initialize Pytmv1
+        client = self._get_client()
+
+        # Make rest call
+        response = client.endpoint.get_endpoint(endpoint_id=endpoint_id)
+        # Check if an error occurred
+        if self._is_pytmv1_error(response.result_code):
+            self.debug_print("Something went wrong, please check endpoint_id.")
+            return action_result.set_status(
+                phantom.APP_ERROR, f"Error fetching endpoint details for {endpoint_id}. Result Code: {response.error}"
+            )
+
+        endpoint_detail = self.unwrap(response.response).data.model_dump()
+
+        # Add the response into the data section
+        action_result.add_data(endpoint_detail)
 
         # Return success
         return action_result.set_status(phantom.APP_SUCCESS)

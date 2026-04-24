@@ -3044,13 +3044,282 @@
                 "type": "table"
             },
             "versions": "EQ(*)"
+        },
+        {
+            "action": "get endpoint list",
+            "identifier": "get_endpoint_list",
+            "description": "Retrieves a detailed list of endpoints from Vision One",
+            "verbose": "Retrieves a detailed list of endpoints from Vision One.",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "query_op": {
+                    "description": "Query operator (and/or)",
+                    "data_type": "string",
+                    "required": false,
+                    "value_list": [
+                        "and",
+                        "or"
+                    ],
+                    "default": "and",
+                    "order": 0
+                },
+                "top": {
+                    "description": "Number of records displayed per page",
+                    "data_type": "numeric",
+                    "required": false,
+                    "default": 100,
+                    "order": 1
+                },
+                "filter": {
+                    "description": "JSON dictionary of field/value used to filter results (e.g. `{\"osPlatform\": \"windows\"}`). For complete list of supported fields check (<https://automation.trendmicro.com/xdr/api-v3#tag/Endpoint-Security/paths/~1v3.0~1endpointSecurity~1endpoints/get>)",
+                    "data_type": "string",
+                    "required": false,
+                    "order": 2
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 0,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.query_op",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.top",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.filter",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.agent_guid",
+                    "data_type": "string",
+                    "column_name": "Agent Guid",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.endpoint_name",
+                    "data_type": "string",
+                    "column_name": "Endpoint Name",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.display_name",
+                    "data_type": "string",
+                    "column_name": "Display Name",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.data.*.os_name",
+                    "data_type": "string",
+                    "column_name": "OS Name",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "action_result.data.*.os_platform",
+                    "data_type": "string",
+                    "column_name": "OS Platform",
+                    "column_order": 5
+                },
+                {
+                    "data_path": "action_result.data.*.os_version",
+                    "data_type": "string",
+                    "column_name": "OS Version",
+                    "column_order": 6
+                },
+                {
+                    "data_path": "action_result.data.*.last_used_ip",
+                    "data_type": "string",
+                    "column_name": "Last Used IP",
+                    "column_order": 7
+                },
+                {
+                    "data_path": "action_result.data.*.ip_addresses",
+                    "data_type": "string",
+                    "column_name": "IP Addresses",
+                    "column_order": 8
+                },
+                {
+                    "data_path": "action_result.data.*.isolation_status",
+                    "data_type": "string",
+                    "column_name": "Isolation Status",
+                    "column_order": 9
+                },
+                {
+                    "data_path": "action_result.data.*.security_policy",
+                    "data_type": "string",
+                    "column_name": "Security Policy",
+                    "column_order": 10
+                },
+                {
+                    "data_path": "action_result.data.*.epp_agent",
+                    "data_type": "string",
+                    "column_name": "EPP Agent",
+                    "column_order": 11
+                },
+                {
+                    "data_path": "action_result.data.*.edr_sensor",
+                    "data_type": "string",
+                    "column_name": "EDR Sensor",
+                    "column_order": 12
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get endpoint details",
+            "identifier": "get_endpoint_details",
+            "description": "Displays the detailed profile of a specified endpoint",
+            "verbose": "Displays the detailed profile of a specified endpoint.",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "endpoint_id": {
+                    "description": "The ID of the endpoint on the Vision One platform. For more details check (<https://automation.trendmicro.com/xdr/api-v3#tag/Endpoint-Security/paths/~1v3.0~1endpointSecurity~1endpoints~1%7BendpointId%7D/get>)",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "order": 0
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 0,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.endpoint_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.agent_guid",
+                    "data_type": "string",
+                    "column_name": "Agent Guid",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.endpoint_name",
+                    "data_type": "string",
+                    "column_name": "Endpoint Name",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.display_name",
+                    "data_type": "string",
+                    "column_name": "Display Name",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.data.*.type",
+                    "data_type": "string",
+                    "column_name": "Type",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "action_result.data.*.os",
+                    "data_type": "string",
+                    "column_name": "OS",
+                    "column_order": 5
+                },
+                {
+                    "data_path": "action_result.data.*.last_used_ip",
+                    "data_type": "string",
+                    "column_name": "Last Used IP",
+                    "column_order": 6
+                },
+                {
+                    "data_path": "action_result.data.*.isolation_status",
+                    "data_type": "string",
+                    "column_name": "Isolation Status",
+                    "column_order": 7
+                },
+                {
+                    "data_path": "action_result.data.*.security_policy",
+                    "data_type": "string",
+                    "column_name": "Security Policy",
+                    "column_order": 8
+                },
+                {
+                    "data_path": "action_result.data.*.interfaces",
+                    "data_type": "string",
+                    "column_name": "Interfaces",
+                    "column_order": 9
+                },
+                {
+                    "data_path": "action_result.data.*.epp_agent",
+                    "data_type": "string",
+                    "column_name": "EPP Agent",
+                    "column_order": 10
+                },
+                {
+                    "data_path": "action_result.data.*.edr_sensor",
+                    "data_type": "string",
+                    "column_name": "EDR Sensor",
+                    "column_order": 11
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
         }
     ],
     "pip_dependencies": {
         "wheel": [
             {
                 "module": "pytmv1",
-                "input_file": "wheels/py3/pytmv1-0.9.1-py3-none-any.whl"
+                "input_file": "wheels/py3/pytmv1-0.10.0-py3-none-any.whl"
             }
         ]
     },
