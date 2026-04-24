@@ -97,9 +97,7 @@ The below configuration variables are required for this Connector to operate. Th
 [Sandbox Analysis Result](#action-sandbox-analysis-result) - Displays the analysis results of the specified object\
 [Sandbox Investigation Package](#action-sandbox-investigation-package) - Downloads the Investigation Package of the specified object\
 [Get Suspicious List](#action-get-suspicious-list) - Retrieves information about domains, file SHA-1, file SHA-256, IP addresses, email addresses, or URLs in the Suspicious Object List and displays the information in a paginated list\
-[Get Exception List](#action-get-exception-list) - Retrieves information about domains, file SHA-1, file SHA-256, IP addresses, sender addresses, or URLs in the Exception List and displays it in a paginated list\
-[Get Endpoint List](#action-get-endpoint-list) - Retrieves a detailed list of endpoints from Vision One\
-[Get Endpoint Details](#action-get-endpoint-details) - Displays the detailed profile of a specified endpoint
+[Get Exception List](#action-get-exception-list) - Retrieves information about domains, file SHA-1, file SHA-256, IP addresses, sender addresses, or URLs in the Exception List and displays it in a paginated list
 
 ## Commands
 
@@ -1444,70 +1442,5 @@ Arguments
 | action_result.data.*.id | String | Unique alphanumeric string that identifies a submission |
 | action_result.data.*.digest | String | object (sandbox-digest) |
 | action_result.data.\*.arguments | String | Command line arguments encoded in Base64 of the submitted file |
-
-## Action: Get Endpoint List
-
-Retrieves a detailed list of endpoints from Vision One.
-
-**API key role permissions required: Endpoint Inventory**
-
-- View, filter, and search
-
-Type: **investigate**\
-Read only: **True**
-
-| **Argument Name** | **Description** | **Required** |
-| --- | --- | --- |
-| query_op | Query operator (and/or) | Optional (default: and) |
-| top | Number of records displayed per page | Optional (default: 100) |
-| filter | JSON dictionary of field/value used to filter results (e.g. `{"osPlatform": "windows"}`). For complete list of supported fields check [here](https://automation.trendmicro.com/xdr/api-v3#tag/Endpoint-Security/paths/~1v3.0~1endpointSecurity~1endpoints/get) | Optional |
-
-#### Context Output
-
-| **Path** | **Type** | **Description** |
-| --- | --- | --- |
-| action_result.data.*.agent_guid | String | Unique identifier of the endpoint agent |
-| action_result.data.*.endpoint_name | String | Name of the endpoint |
-| action_result.data.*.display_name | String | Display name of the endpoint |
-| action_result.data.*.os_name | String | Operating system name |
-| action_result.data.*.os_platform | String | Operating system platform |
-| action_result.data.*.os_version | String | Operating system version |
-| action_result.data.*.last_used_ip | String | Last known IP address used by the endpoint |
-| action_result.data.*.ip_addresses | String | List of IP addresses associated with the endpoint |
-| action_result.data.*.isolation_status | String | Isolation status of the endpoint |
-| action_result.data.*.security_policy | String | Security policy applied to the endpoint |
-| action_result.data.*.epp_agent | String | EPP agent information |
-| action_result.data.*.edr_sensor | String | EDR sensor information |
-
-## Action: Get Endpoint Details
-
-Displays the detailed profile of a specified endpoint.
-
-**API key role permissions required: Endpoint Inventory**
-
-- View, filter, and search
-
-Type: **investigate**\
-Read only: **True**
-
-| **Argument Name** | **Description** | **Required** |
-| --- | --- | --- |
-| endpoint_id | The ID of the endpoint on the Vision One platform. For more details check [here](https://automation.trendmicro.com/xdr/api-v3#tag/Endpoint-Security/paths/~1v3.0~1endpointSecurity~1endpoints~1%7BendpointId%7D/get) | Required |
-
-#### Context Output
-
-| **Path** | **Type** | **Description** |
-| --- | --- | --- |
-| action_result.data.*.agent_guid | String | Unique identifier of the endpoint agent |
-| action_result.data.*.endpoint_name | String | Name of the endpoint |
-| action_result.data.*.display_name | String | Display name of the endpoint |
-| action_result.data.*.type | String | Type of the endpoint |
-| action_result.data.*.os | String | Operating system details of the endpoint |
-| action_result.data.*.last_used_ip | String | Last known IP address used by the endpoint |
-| action_result.data.*.isolation_status | String | Isolation status of the endpoint |
-| action_result.data.*.security_policy | String | Security policy applied to the endpoint |
-| action_result.data.*.interfaces | String | Network interfaces of the endpoint |
-| action_result.data.*.epp_agent | String | EPP agent information |
-| action_result.data.\*.edr_sensor | String | EDR sensor information |
 
 ______________________________________________________________________

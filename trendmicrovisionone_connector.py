@@ -268,7 +268,7 @@ class TrendMicroVisionOneConnector(BaseConnector):
         try:
             fields = json.loads(filter_str)
         except json.JSONDecodeError:
-            fields = {}
+            return action_result.set_status(phantom.APP_ERROR, "Invalid JSON provided for 'filter' parameter.")
 
         # Choose QueryOp Enum based on user choice
         if query_op.lower() == "or":
@@ -290,7 +290,7 @@ class TrendMicroVisionOneConnector(BaseConnector):
                 **fields,
             )
         except Exception as e:
-            raise RuntimeError(f"Error while fetching endpoint list: {e}")
+            return action_result.set_status(phantom.APP_ERROR, f"Error while fetching endpoint list: {e}")
 
         # Add the response into the data section
         for item in endpoints:
@@ -323,7 +323,9 @@ class TrendMicroVisionOneConnector(BaseConnector):
         # Check if an error occurred
         if self._is_pytmv1_error(response.result_code):
             self.debug_print("Something went wrong, please check endpoint_id.")
-            raise RuntimeError(f"Error fetching endpoint details for {endpoint_id}. Result Code: {response.error}")
+            return action_result.set_status(
+                phantom.APP_ERROR, f"Error fetching endpoint details for {endpoint_id}. Result Code: {response.error}"
+            )
 
         endpoint_detail = self.unwrap(response.response).data.model_dump()
 
